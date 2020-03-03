@@ -58,7 +58,7 @@ class RecyclerViewAdapterSelect : RecyclerView.Adapter<RecyclerViewAdapterSelect
         }
 
         fun bind(player:Player) {
-            lblNameC.text = player.name
+            lblNameR.text = player.name
             imgAvatarR.setImageResource(player.avatar)
             containerView.setOnClickListener {
                 if(sharedPreferences.getInt("avatar",R.drawable.logo)==player.avatar) {

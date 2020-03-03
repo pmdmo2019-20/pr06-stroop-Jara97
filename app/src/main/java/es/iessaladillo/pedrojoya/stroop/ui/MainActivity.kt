@@ -75,6 +75,9 @@ class MainActivity : AppCompatActivity() {
             9 -> supportFragmentManager.commit {
                 replace(R.id.navHostFragment, SumaryFragment.newInstance())
             }
+            10 -> supportFragmentManager.commit {
+                replace(R.id.navHostFragment, RankingFragment.newInstance())
+            }
 
         }
     }
@@ -158,6 +161,13 @@ class MainActivity : AppCompatActivity() {
                         .setTitle(R.string.player_edition_title)
                         .setPositiveButton(R.string.help_accept){_,_->}
                         .setMessage(R.string.player_edition_help_description)
+                        .create().show()
+                }
+                else if(viewModel.fragment.value==10){
+                    AlertDialog.Builder(this)
+                        .setTitle(R.string.ranking_title)
+                        .setPositiveButton(R.string.help_accept){_,_->}
+                        .setMessage(R.string.ranking_help_description)
                         .create().show()
                 }
                 true

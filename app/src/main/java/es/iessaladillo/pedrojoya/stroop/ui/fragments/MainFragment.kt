@@ -80,6 +80,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             }
 
         }
+        cardRanking.setOnClickListener {
+            viewModel.setFragment(10)
+
+        }
 
     }
 

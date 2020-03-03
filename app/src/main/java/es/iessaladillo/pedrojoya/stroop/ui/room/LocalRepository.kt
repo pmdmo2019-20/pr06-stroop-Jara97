@@ -34,7 +34,7 @@ class LocalRepository(private val dao: Dao){
         return dao.queryPlayer(userId)
     }
 
-    fun queryAllPlayersWithGames(): List<UserWithGames>{
+    fun queryAllPlayersWithGames(): LiveData<List<UserWithGames>>{
         return dao.queryAllPlayersWithGames()
     }
 

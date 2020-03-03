@@ -9,10 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.base.Event
-import es.iessaladillo.pedrojoya.stroop.ui.room.Database1
-import es.iessaladillo.pedrojoya.stroop.ui.room.LocalRepository
-import es.iessaladillo.pedrojoya.stroop.ui.room.Match
-import es.iessaladillo.pedrojoya.stroop.ui.room.Player
+import es.iessaladillo.pedrojoya.stroop.ui.room.*
 
 class MainActivityViewModel : ViewModel() {
 
@@ -110,6 +107,10 @@ class MainActivityViewModel : ViewModel() {
             } catch (e: Exception) {
                 //que aparezca el error por pantalla
             }}.start()
+    }
+
+    fun getPlayersWithGames():LiveData<List<UserWithGames>>{
+        return repository.queryAllPlayersWithGames()
     }
 
 

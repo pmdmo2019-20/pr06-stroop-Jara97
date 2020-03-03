@@ -21,9 +21,11 @@ interface Dao {
 
     @Query("select * from player where id=:userId") fun queryPlayer(userId:Long):Player?
 
+
     @Transaction
-    @Query("SELECT * FROM player")
-    fun queryAllPlayersWithGames(): List<UserWithGames>
+    @Query("select * from player,match where player.id=match.playerId group by player.id order by `match`.points Desc")
+    fun queryAllPlayersWithGames(): LiveData<List<UserWithGames>>
+
 
     @Insert
     fun inserMatch(match: Match)

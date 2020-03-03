@@ -22,17 +22,14 @@ class Match(
     val playerId: Long,
     @ColumnInfo(name="points")
     val points:Long,
+    @ColumnInfo(name="time")
+    val time:Long,
     @ColumnInfo(name="words")
     val words:Long,
     @ColumnInfo(name="gameMode")
-    val gamemode:Boolean,
+    val gamemode:String,
     @ColumnInfo(name="date")
     val date: String
-
-
-
-
-
 )
 
 // Clase POJO que representa la relación
@@ -43,5 +40,10 @@ data class UserWithGames(
         parentColumn = "id",
         entityColumn = "playerId"
     )
-    val gameList: List<Match>
+    val gameList: List<Match?>
+)
+
+data class UserWithGames2(
+    val player: Player,
+    val gameList: Match?
 )

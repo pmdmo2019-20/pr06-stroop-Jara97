@@ -20,6 +20,7 @@ class GameViewModel() : ViewModel() {
     private var currentWordMillis: Int = 0
     @Volatile
     private var millisUntilFinished: Int = 0
+    private var minutes:Long=0
     private val handler: Handler = Handler()
     private val listColors: List<String> = listOf("BLUE","RED","YELLOW","GREEN")
     private val listColors2:List<Int> = listOf(Color.BLUE,Color.RED,Color.YELLOW,Color.GREEN)
@@ -77,14 +78,14 @@ class GameViewModel() : ViewModel() {
 
      fun onGameTimeFinish() {
         isGameFinished = true
-         _end.value= Match(0,actualPlayer.id,correct.value!!.toLong()*10,totalWord.value!!.toLong(),gameModeA,Date().toString())
+         _end.value= Match(0,actualPlayer.id,correct.value!!.toLong()*10,minutes,totalWord.value!!.toLong(),(if(gameModeA.equals("true"))"Time" else "Attemps"),Date().toString())
         // TODO
     }
 
     fun nextWord() {
         rColor=randomColor.nextInt(4)
         wColor=randomColor.nextInt(4)
-        _color.value=listColors2[wColor]
+        _color.value=listColors2[rColor]
         _word.value=listColors[wColor]
         _totalWord.value=_totalWord.value!!+1
 
@@ -121,6 +122,7 @@ class GameViewModel() : ViewModel() {
 
     fun startGameThread(gameTime: Int, wordTime: Int) {
         millisUntilFinished = gameTime
+        minutes = gameTime.toLong()
         currentWordMillis = 0
         isGameFinished = false
         _time.value=gameTime

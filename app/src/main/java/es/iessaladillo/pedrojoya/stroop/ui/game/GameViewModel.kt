@@ -31,11 +31,11 @@ class GameViewModel() : ViewModel() {
     lateinit var actualPlayer:Player
 
     private var gameModeA:Boolean=true
-
+    private var gameModeB:String=""
 
     private val randomColor:Random=Random()
 
-    private val _attempts: MutableLiveData<Int> = MutableLiveData(-1)
+    private val _attempts: MutableLiveData<Int> = MutableLiveData(1)
     val attempts: LiveData<Int>
         get() = _attempts
 
@@ -64,7 +64,7 @@ class GameViewModel() : ViewModel() {
         get() = _end
 
 
-    // TODO
+
 
     private fun onGameTimeTick(millisUntilFinished: Int) {
         _time.value=millisUntilFinished
@@ -74,12 +74,20 @@ class GameViewModel() : ViewModel() {
         this._attempts.value=attempts
     }
 
+    fun setGameMode(gameMode:String) {
+        this.gameModeB=gameMode
+    }
+
 
 
      fun onGameTimeFinish() {
         isGameFinished = true
-         _end.value= Match(0,actualPlayer.id,correct.value!!.toLong()*10,minutes,totalWord.value!!.toLong(),(if(gameModeA.equals("true"))"Time" else "Attemps"),Date().toString())
-        // TODO
+         _end.value= Match(0,actualPlayer.id,correct.value!!.toLong()*10,minutes,totalWord.value!!.toLong(),gameModeB,Date().toString())
+    }
+
+    fun onGameTimeFinish2() {
+        isGameFinished = true
+
     }
 
     fun nextWord() {
@@ -146,7 +154,7 @@ class GameViewModel() : ViewModel() {
                             millisUntilFinished -= checkTimeMillis
                             onGameTimeTick(millisUntilFinished)
                             if (millisUntilFinished <= 0) {
-                                onGameTimeFinish()
+                                onGameTimeFinish2()
                             }
                         }
                     }

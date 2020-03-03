@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -65,12 +66,6 @@ class PlayerEditionFragment : Fragment(R.layout.playercreation_fragment) {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(context, 3)
             itemAnimator = DefaultItemAnimator()
-            addItemDecoration(
-                DividerItemDecoration(
-                    context,
-                    RecyclerView.VERTICAL
-                )
-            )
             adapter = listAdapterSelect
         }
     }
@@ -93,11 +88,18 @@ class PlayerEditionFragment : Fragment(R.layout.playercreation_fragment) {
 
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean =
 
         when (item.itemId) {
             R.id.mnuDelete -> {
-                viewModel.deletePlayer(viewModel.onChangePlayer.value!!)
+                AlertDialog.Builder(context!!)
+                    .setTitle(R.string.player_deletion_title)
+                    .setPositiveButton(R.string.player_deletion_yes){_,_->viewModel.deletePlayer(viewModel.onChangePlayer.value!!)}
+                    .setNegativeButton(R.string.player_deletion_no){_,_->}
+                    .setMessage(R.string.player_deletion_message)
+                    .create().show()
+
                 true
             }
             else -> super.onOptionsItemSelected(item)

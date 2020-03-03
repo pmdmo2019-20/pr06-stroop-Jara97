@@ -63,10 +63,6 @@ class PlayerCreationFragment : Fragment(R.layout.playercreation_fragment) {
             setHasFixedSize(true)
             layoutManager= GridLayoutManager(context,3)
             itemAnimator = DefaultItemAnimator()
-            addItemDecoration(
-                DividerItemDecoration(context,
-                    RecyclerView.VERTICAL)
-            )
             adapter = listAdapterSelect
         }
     }

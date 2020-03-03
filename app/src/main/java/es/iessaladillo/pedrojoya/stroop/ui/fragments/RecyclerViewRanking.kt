@@ -74,7 +74,7 @@ class RecyclerViewAdapterRanking : RecyclerView.Adapter<RecyclerViewAdapterRanki
             if(playerWithGames.gameList!=null){
                 imgAvatarR.setImageResource(playerWithGames.player.avatar)
                 lblNameR.text=playerWithGames.player.name
-                lblGameModeR.text="Game mode:"+playerWithGames.gameList.gamemode
+                lblGameModeR.text="Game mode:"+(if(playerWithGames.gameList.gamemode.equals(""))"Time" else playerWithGames.gameList.gamemode)
                 lblTimeR.text="Minutes: "+playerWithGames.gameList.time/60000
                 lblWordsR.text="Words: "+playerWithGames.gameList!!.words.toString()
                 lblCorrectR.text="Correct: "+(playerWithGames.gameList!!.points/10).toString()

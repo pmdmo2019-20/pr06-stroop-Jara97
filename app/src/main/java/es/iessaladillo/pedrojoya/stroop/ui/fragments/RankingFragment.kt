@@ -66,10 +66,6 @@ class RankingFragment : Fragment(R.layout.ranking_fragment) {
             setHasFixedSize(true)
             layoutManager= LinearLayoutManager(context)
             itemAnimator = DefaultItemAnimator()
-            addItemDecoration(
-                DividerItemDecoration(context,
-                    RecyclerView.VERTICAL)
-            )
             adapter = listAdapterRanking
         }
     }

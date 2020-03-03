@@ -33,8 +33,9 @@ class GameFragment : Fragment(R.layout.game_fragment) {
     private val viewModel: MainActivityViewModel by activityViewModels()
 
     private val gameViewModel:GameViewModel= GameViewModel().apply {
-        //setContext(context!!)
-    }
+
+}
+
 
     companion object {
         fun newInstance() = GameFragment()
@@ -46,6 +47,7 @@ class GameFragment : Fragment(R.layout.game_fragment) {
         setupViews()
         setHasOptionsMenu(false)
         setObservers()
+        gameViewModel.setGameMode(sharedPreferences.getString(getString(R.string.prefGameMode_key),"")!!)
 
     }
 
